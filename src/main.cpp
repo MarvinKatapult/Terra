@@ -3,15 +3,17 @@
 
 void printMatrix( MMatrix * p_matrix ) {
 
-	printf( "Matrix %p:\n", p_matrix );
+    printf( "Matrix %p:\n", p_matrix );
 
-	for ( int i = 0; i < p_matrix->countFields(); i++ ) {
-		printf( "%f, ", p_matrix->getValue( i ) );
+    for ( int i = 0; i < p_matrix->countFields(); i++ ) {
+        printf( "%f, ", p_matrix->getValue( i ) );
 
-		// Line break for new row
-		if ( (i + 1) % p_matrix->countCols() == 0 ) printf( "\n" ); 
-	}
-	printf( "\n" );
+        // Line break for new row
+        if ( (i + 1) % p_matrix->countCols() == 0 ) printf( "\n" ); 
+    }
+
+    printf( "\n" );
+
 }
 
 
