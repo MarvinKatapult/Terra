@@ -17,6 +17,8 @@ MMatrix::MMatrix( float * p_layout, int p_rows, int p_cols ) {
 
 }
 
+MMatrix::MMatrix() {}
+
 MMatrix::~MMatrix() {
     delete[] myFields;
 }
@@ -37,7 +39,7 @@ MMatrix MMatrix::mult( MMatrix * p_matrix ) {
             float new_field = 0;
 
             for (int k = 0; k < p_matrix->countRows(); k++) {
-                new_field += this->getValue( i, k ) * p_matrix->getValue( k, j );
+                new_field += this->getValue( k, i ) * p_matrix->getValue( j, k );
             }
 
             new_layout[j + i * p_matrix->countCols()] = new_field;
