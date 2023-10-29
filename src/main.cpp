@@ -19,25 +19,25 @@ void printMatrix( MMatrix * p_matrix ) {
 
 int main() {
 
-	float position[3] = {
-		5,
-		2, 
-		2
-	};
+    float position[3] = {
+        5,
+        2, 
+        2
+    };
 
-	float projection[6] = {
-		1, 0, 0,
-		0, 1, 0
-	};
+    float projection[6] = {
+        1, 0, 0,
+        0, 1, 0
+    };
 
-	MMatrix m_position( position, 3, 1 );
-	MMatrix m_projection( projection, 2, 3 );
+    MMatrix m_position( position, 3, 1 );
+    MMatrix m_projection( projection, 2, 3 );
 
-	MMatrix projected_matrix = m_projection.mult( &m_position );
+    MMatrix projected_matrix = m_projection.mult( &m_position );
 
-	printMatrix( &projected_matrix );
+    printMatrix( &projected_matrix );
 
-	return 0;
+    return 0;
 }
 
 
