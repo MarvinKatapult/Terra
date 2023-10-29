@@ -32,9 +32,9 @@ void MMatrix::mult( float p_scalar ) {
 
 MMatrix MMatrix::mult( MMatrix * p_matrix ) {
 
-	float * new_layout = new float[myNumRows * p_matrix->countCols()];
+    float * new_layout = new float[myNumRows * p_matrix->countCols()];
 
-	// Perform Matrix multiplication
+    // Perform Matrix multiplication
     for (int i = 0; i < myNumRows; i++) {
         for (int j = 0; j < p_matrix->countCols(); j++) {
 			float new_field = 0;
