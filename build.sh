@@ -11,6 +11,7 @@ green_echo() {
     echo -e "\e[32m$text\e[0m"
 }
 
+########## Compiling Static Library ##########
 if [ "$1" == "-lib" ]; then
     echo "Generating static Library '$project.a'"
 
@@ -18,14 +19,25 @@ if [ "$1" == "-lib" ]; then
     if [ ! -d "./debug" ]; then
         mkdir debug
     fi 
+#############################################
 
 ######### Add Source Files #########
     g++ -c src/tmatrix.cpp -Iinclude      -o debug/tmatrix.o && \
     g++ -c src/tlist.cpp   -Iinclude      -o debug/tlist.o && \
     ar rcs $project.a debug/*
+    error_code=$?
+
+    echo -n "Compiled library "
+    if [ $error_code -eq 0 ]; then
+        green_echo "successfully"
+    else
+        red_echo "failed"
+    fi
+
 ###################################
 
-else
+########## Compiling Binary ##########
+else 
     echo "Compiling all files for project '$project'"
 ######### Add Source Files #########
     g++ -o project -Wextra -Wall -pedantic -g -Iinclude \
@@ -33,10 +45,11 @@ else
         src/tmatrix.cpp \
         src/tlist.cpp 
 ###################################
-
-    if [ $? -eq 0 ]; then
-        echo -n "Compiling " && green_echo "finished" 
+    error_code=$?
+    echo -n "Compiling "
+    if [ $error_code -eq 0 ]; then
+        green_echo "finished" 
     else
-        echo -n "Compiling " && red_echo "failed" 
+        red_echo "failed" 
     fi
 fi
