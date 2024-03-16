@@ -11,9 +11,15 @@ green_echo() {
     echo -e "\e[32m$text\e[0m"
 }
 
+yellow_echo() {
+    local text=$1
+    echo -e "\e[33m$text\e[0m"
+}
+
 ########## Compiling Static Library ##########
 if [ "$1" == "-lib" ]; then
-    echo "Generating static Library '$project.a'"
+    echo -n "Generating static Library "
+    yellow_echo "$project.a"
 
     # Check if debug directory exists
     if [ ! -d "./debug" ]; then
@@ -39,7 +45,8 @@ if [ "$1" == "-lib" ]; then
 
 ########## Compiling Binary ##########
 else 
-    echo "Compiling all files for project '$project'"
+    echo -n "Compiling all files for project "
+    yellow_echo "$project"
 ######### Add Source Files #########
     g++ -o $project -Wextra -Wall -pedantic -g -Iinclude \
         src/main.cpp \
