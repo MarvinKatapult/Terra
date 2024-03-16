@@ -24,7 +24,9 @@ if [ "$1" == "-lib" ]; then
 ######### Add Source Files #########
     g++ -c src/tmatrix.cpp -Iinclude      -o debug/tmatrix.o && \
     g++ -c src/tlist.cpp   -Iinclude      -o debug/tlist.o && \
+    g++ -c src/tlog.cpp   -Iinclude      -o debug/tlog.o && \
     ar rcs $project.a debug/*
+###################################
     error_code=$?
 
     echo -n "Compiled library "
@@ -34,15 +36,15 @@ if [ "$1" == "-lib" ]; then
         red_echo "failed"
     fi
 
-###################################
 
 ########## Compiling Binary ##########
 else 
     echo "Compiling all files for project '$project'"
 ######### Add Source Files #########
-    g++ -o project -Wextra -Wall -pedantic -g -Iinclude \
+    g++ -o $project -Wextra -Wall -pedantic -g -Iinclude \
         src/main.cpp \
         src/tmatrix.cpp \
+        src/tlog.cpp \
         src/tlist.cpp 
 ###################################
     error_code=$?
