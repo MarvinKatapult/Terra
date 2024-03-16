@@ -1,5 +1,6 @@
 
 if [ "$1" == "-lib" ]; then
+    echo "Generating static Library 'terra.a'"
     # Check if debug directory exists
     if [ ! -d "./debug" ]; then
         mkdir debug
@@ -11,6 +12,7 @@ if [ "$1" == "-lib" ]; then
     ar rcs terra.a debug/*
 
 else
+    echo "Compiling all files"
     # Compile all files
     g++ -o terra -Wextra -Wall -pedantic -g -Iinclude \
        src/tmatrix.cpp \
