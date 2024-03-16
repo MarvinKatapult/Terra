@@ -1,7 +1,7 @@
 #include <tmatrix.hpp>
 #include <stdlib.h>
 
-TMatrix::TMatrix( float * p_layout, int p_rows, int p_cols ) {
+TMatrix::TMatrix( float p_layout[], int p_rows, int p_cols ) {
 
     // Set attributes
     myNumRows = p_rows;
@@ -29,7 +29,6 @@ void TMatrix::mult( float p_scalar ) {
 }
 
 TMatrix TMatrix::mult( TMatrix * p_matrix ) {
-
     float * new_layout = new float[myNumRows * p_matrix->countCols()];
 
     // Perform Matrix multiplication
@@ -42,18 +41,13 @@ TMatrix TMatrix::mult( TMatrix * p_matrix ) {
             }
 
             new_layout[j + i * p_matrix->countCols()] = new_field;
-
         }
-
     }
-
     // Create new Matrix
     TMatrix new_matrix( new_layout, myNumRows, p_matrix->countCols() );
 
     delete[] new_layout;
-
     return new_matrix;
-
 }
 
 // Getters

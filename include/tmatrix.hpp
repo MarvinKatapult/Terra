@@ -15,7 +15,7 @@ class TMatrix {
 		* @param rows Number of Rows
 		* @param cols Number of Cols
 		*/
-		TMatrix( float * layout, int rows, int cols );
+		TMatrix( float layout[], int rows, int cols );
 		
 	   /**
 		* @brief Constructor
