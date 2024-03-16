@@ -68,7 +68,5 @@ class TList {
 		TListElement * getElement( int position );
 
 		TListElement * myFirstElement;
-
 		int myLength;
-
 };

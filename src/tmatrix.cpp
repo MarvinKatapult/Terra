@@ -14,7 +14,6 @@ TMatrix::TMatrix( float * p_layout, int p_rows, int p_cols ) {
     for ( int i = 0; i < myNumFields; i++ ) {
         myFields[i] = p_layout[i];
     }
-
 }
 
 TMatrix::TMatrix() {}
