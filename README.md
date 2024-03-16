@@ -1,7 +1,5 @@
 # MLib
-Library for C++ with basic functions
-Curently Contains
-MList - A linked List
+Library for C++ with basic functionality
 
 # Classes
 - TMatrix - Mathematic Matrix
