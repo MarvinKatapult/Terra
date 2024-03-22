@@ -35,9 +35,10 @@ if [ "$1" == "-lib" ]; then
 ###################################
     error_code=$?
 
-    echo -n "Compiled library "
+    echo -n "Compiling library "
     if [ $error_code -eq 0 ]; then
-        green_echo "successfully"
+        echo -n "was "
+        green_echo "successfull"
     else
         red_echo "failed"
     fi
