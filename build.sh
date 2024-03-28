@@ -28,9 +28,9 @@ if [ "$1" == "-lib" ]; then
 #############################################
 
 ######### Add Source Files #########
-    g++ -c src/tmatrix.cpp -Iinclude      -o debug/tmatrix.o && \
-    g++ -c src/tlist.cpp   -Iinclude      -o debug/tlist.o && \
-    g++ -c src/tlog.cpp   -Iinclude      -o debug/tlog.o && \
+    g++ -c src/tmatrix.cpp      -Iinclude      -o debug/tmatrix.o && \
+    g++ -c src/tlist.cpp        -Iinclude      -o debug/tlist.o && \
+    g++ -c src/tlog.cpp         -Iinclude      -o debug/tlog.o && \
     ar rcs $project.a debug/*
 ###################################
     error_code=$?
