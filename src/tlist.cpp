@@ -1,5 +1,4 @@
 #include <tlist.hpp>
-#include <tlistelement.hpp>
 
 TList::TList() {
 	myLength = 0;
@@ -60,11 +59,11 @@ void TList::remove( int p_position ) {
 	if ( current->getPrev() == 0L ) {
 		// If First Element
 		TListElement * next = current->getNext();
-		next->setPrev( 0L );
+		if ( next != 0L ) next->setPrev( 0L );
 	} else if ( current->getNext() == 0L ) {
 		// If last element
 		TListElement * prev = current->getPrev();
-		prev->setNext( 0L );
+		if ( prev != 0L ) prev->setNext( 0L );
 	} else {
 		// If not last element and not first element
 		TListElement * next = current->getNext();
