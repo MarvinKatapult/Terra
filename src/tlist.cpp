@@ -1,7 +1,20 @@
 #include <tlist.hpp>
+#include <stdio.h>
 
 TList::TList() {
 	myLength = 0;
+}
+
+/**
+ * @brief Copyconstructor
+ * @param list
+ */
+TList::TList( const TList & p_list ) {
+    myLength = 0;
+    
+    for ( int i = 0; i < p_list.count(); i++ ) {
+        append( p_list.getValue( i ) );
+    }
 }
 
 TList::~TList() {
@@ -38,7 +51,7 @@ void TList::append( void * p_element ) {
 	myLength++;
 }
 
-void * TList::getValue( int p_position ) {
+void * TList::getValue( int p_position ) const {
 	TListElement * current = myFirstElement;
 	while( p_position != 0 ) {
 		if ( current->getNext() == 0L ) return 0L;
@@ -50,33 +63,34 @@ void * TList::getValue( int p_position ) {
 }
 
 void TList::update( int p_position, void * p_value ) {
-    getElement( p_position )->setValue( p_value );
+    TListElement * element = getElement( p_position );
+    if ( element != 0L ) element->setValue( p_value );
 }
 
 void TList::remove( int p_position ) {
 	TListElement * current = getElement( p_position );
+    if ( current == 0L ) return;
 
-	if ( current->getPrev() == 0L ) {
-		// If First Element
-		TListElement * next = current->getNext();
-		if ( next != 0L ) next->setPrev( 0L );
-	} else if ( current->getNext() == 0L ) {
-		// If last element
-		TListElement * prev = current->getPrev();
-		if ( prev != 0L ) prev->setNext( 0L );
-	} else {
-		// If not last element and not first element
-		TListElement * next = current->getNext();
-		TListElement * prev = current->getPrev();
-		next->setPrev( current->getNext() );
-		prev->setNext( current->getNext() );
-	}
+    TListElement * next = current->getNext();
+    TListElement * prev = current->getPrev();
+    printf( "Current: %p, Next:%p, Prev:%p\n", current, next, prev );
+    if ( next != 0L ) {
+        next->setPrev( prev );
+        printf( "SetPrev\n" );
+    }
+    if ( prev != 0L ) {
+        prev->setNext( next );
+        printf( "SetNext\n" );
+    }
+    if ( current == myFirstElement ) myFirstElement = next;
+
 	myLength--;
 	delete( current );
 }
 
 TListElement * TList::getLast() {
 	TListElement * current = myFirstElement;
+    if ( current == 0L ) return 0L;
 	while ( current->getNext() != 0L ) {
 		current = current->getNext();
 	}
@@ -85,8 +99,11 @@ TListElement * TList::getLast() {
 }
 
 TListElement * TList::getElement( int p_position ) {
+    if ( p_position == 0 ) return myFirstElement;
+
 	TListElement * current = myFirstElement;
 	while ( p_position != 0 ) {
+        if ( current == 0L ) return 0L;
 		current = current->getNext();
 		p_position--;
 	}

@@ -56,6 +56,22 @@ class TLog {
          */
         bool print( const char * format, ... ); 
 
+        /**
+         * @brief Prints to set file with color
+         * @param color Color
+         * @param format Format
+         * @return true, if successful, otherwise false
+         */
+        bool print( TLogColor color, const char * format, ... );
+
+        /**
+         * @brief Prints to set file with loglevel
+         * @param level Loglevel
+         * @param format Format
+         * @return true, if successful, otherwise false
+         */
+        bool print( TLogLevel level, const char * format, ... );
+
     private:
 
         /**

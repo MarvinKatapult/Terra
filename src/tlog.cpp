@@ -61,6 +61,45 @@ bool TLog::print( const char * p_format, ... ) {
 }
 
 /**
+ * @brief Prints to set file with color
+ * @param color Color
+ * @param format Format
+ * @return true, if successful, otherwise false
+ */
+bool TLog::print( TLogColor p_color, const char * p_format, ... ) {
+
+    // Print
+    setColor( p_color );
+    va_list args;
+    va_start( args, p_format );
+    bool ret = vfprintf( myFile, p_format, args ) >= 0;
+    va_end( args );
+    resetColor();
+
+    return ret;
+}
+
+/**
+ * @brief Prints to set file with loglevel
+ * @param level Loglevel
+ * @param format Format
+ * @return true, if successful, otherwise false
+ */
+bool TLog::print( TLogLevel p_level, const char * p_format, ... ) {
+
+    myLogLevel = p_level;
+    setColorForLogLevel();
+    // Print
+    va_list args;
+    va_start( args, p_format );
+    bool ret = vfprintf( myFile, p_format, args ) >= 0;
+    va_end( args );
+    resetColor();
+
+    return ret;
+}
+
+/**
  * @brief Sets Color with ascii sequence
  * @param color Color
  */
@@ -71,28 +110,28 @@ void TLog::setColor( TLogColor p_color ) {
             resetColor();
             break;
         case TLogBlack:
-            fprintf( myFile, "\e[0;30m" );
+            fprintf( myFile, "\033[0;30m" );
             break;
         case TLogRed:
-            fprintf( myFile, "\e[0;31m" );
+            fprintf( myFile, "\033[0;31m" );
             break;
         case TLogGreen:
-            fprintf( myFile, "\e[0;32m" );
+            fprintf( myFile, "\033[0;32m" );
             break;
         case TLogYellow:
-            fprintf( myFile, "\e[0;33m" );
+            fprintf( myFile, "\033[0;33m" );
             break;
         case TLogBlue:
-            fprintf( myFile, "\e[0;34m" );
+            fprintf( myFile, "\033[0;34m" );
             break;
         case TLogPurple:
-            fprintf( myFile, "\e[0;35m" );
+            fprintf( myFile, "\033[0;35m" );
             break;
         case TLogCyan:
-            fprintf( myFile, "\e[0;36m" );
+            fprintf( myFile, "\033[0;36m" );
             break;
         case TLogWhite:
-            fprintf( myFile, "\e[0;37m" );
+            fprintf( myFile, "\033[0;37m" );
             break;
     }
 }
@@ -102,7 +141,7 @@ void TLog::setColor( TLogColor p_color ) {
  */
 void TLog::resetColor() {
     if ( myFile != stdout && myFile != stderr ) return;
-    fprintf( myFile, "\e[0m" );
+    fprintf( myFile, "\033[0m" );
 }
 
 /**

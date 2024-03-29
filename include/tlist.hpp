@@ -45,6 +45,12 @@ class TList {
 		*/
 		TList();
 
+        /**
+         * @brief Copyconstructor
+         * @param list
+         */
+        TList( const TList & list );
+
 	   /**
 		* @brief Deconstructor
 		*/
@@ -66,7 +72,7 @@ class TList {
 		* @param Position
 		* @return Value Returns value or null when out of bounds
 		*/
-		void * getValue( int position );
+		void * getValue( int position ) const;
 
 	   /**
 		* @brief Updates Value at Position
@@ -85,7 +91,7 @@ class TList {
 		* @brief Returns Length of List
 		* @return Number of Elements in List
 		*/
-		int count( void ) { return myLength; }
+		int count( void ) const { return myLength; }
 	
 	private:
 
