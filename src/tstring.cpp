@@ -16,6 +16,12 @@ TString::TString( const char * p_str ) {
     copyCString( p_str );
 }
 
+TString::TString( char p_character ) {
+    myBuffer = (char *)malloc( sizeof( char * ) * 2 );
+    myBuffer[0] = p_character;
+    myBuffer[1] = '\0';
+}
+
 TString::TString( int p_number ) {
     myBuffer = convertNumberToString( p_number );
 }

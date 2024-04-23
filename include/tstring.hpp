@@ -7,6 +7,7 @@ class TString {
         /** Constructors **/
         TString( void );
         TString( const char * str );
+        TString( char character );
         TString( int number );
         TString( long number );
         TString( const TString & str );

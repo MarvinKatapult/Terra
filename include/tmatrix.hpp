@@ -10,6 +10,11 @@ class TMatrix {
 		TMatrix( void );
 
 	   /**
+		* @brief Deconstructor
+		*/
+		~TMatrix( void );
+
+	   /**
 		* @brief Constructor
 		* @param Layout Layout of Matrix
 		* @param rows Number of Rows
@@ -70,11 +75,6 @@ class TMatrix {
 		*/
 		int countFields( void );
 
-	   /**
-		* @brief Deconstructor
-		*/
-		~TMatrix();
-
 	private:
 
 		float * myFields;
@@ -82,5 +82,4 @@ class TMatrix {
 		int myNumFields;
 		int myNumRows;
 		int myNumCols;
-
 };
