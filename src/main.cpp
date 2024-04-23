@@ -4,11 +4,8 @@
 int main() {
 
     TString str( "Hello" );
-    TString str2( " World!" );
 
-    str.append( str2 );
-
-    printf( "%s\n", str.ascii() );
+    printf( "%c\n", str.character( 1 ) );
 
     return 0;
 }
