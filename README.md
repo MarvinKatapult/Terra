@@ -5,3 +5,4 @@ Library for C++ with basic functionality
 - TMatrix - Mathematic Matrix
 - TList   - Linked List
 - TLog    - Log
+- TString - String
