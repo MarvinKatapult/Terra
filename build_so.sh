@@ -18,7 +18,7 @@ yellow_echo() {
 
 ########## Compiling Static Library ##########
 if [ "$1" == "-lib" ]; then
-    echo -n "Generating static Library "
+    echo -n "Generating shared object Library "
     yellow_echo "$project.a"
 
     # Check if debug directory exists
@@ -28,11 +28,11 @@ if [ "$1" == "-lib" ]; then
 #############################################
 
 ######### Add Source Files #########
-    g++ -c src/tmatrix.cpp      -Iinclude  -fPIC    -o debug/tmatrix.o && \
-    g++ -c src/tlist.cpp        -Iinclude  -fPIC    -o debug/tlist.o && \
-    g++ -c src/tlog.cpp         -Iinclude  -fPIC    -o debug/tlog.o && \
-    g++ -c src/tstring.cpp      -Iinclude  -fPIC    -o debug/tstring.o && \
-    ar rcs lib$project.a debug/*
+    g++ -c src/tmatrix.cpp      -Iinclude -fPIC -o debug/tmatrix.o && \
+    g++ -c src/tlist.cpp        -Iinclude -fPIC -o debug/tlist.o && \
+    g++ -c src/tlog.cpp         -Iinclude -fPIC -o debug/tlog.o && \
+    g++ -c src/tstring.cpp      -Iinclude -fPIC -o debug/tstring.o && \
+    g++ -shared debug/* -fPIC -o libterra.so
 ###################################
     error_code=$?
 

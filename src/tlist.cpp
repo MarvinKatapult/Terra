@@ -73,14 +73,11 @@ void TList::remove( int p_position ) {
 
     TListElement * next = current->getNext();
     TListElement * prev = current->getPrev();
-    printf( "Current: %p, Next:%p, Prev:%p\n", current, next, prev );
     if ( next != 0L ) {
         next->setPrev( prev );
-        printf( "SetPrev\n" );
     }
     if ( prev != 0L ) {
         prev->setNext( next );
-        printf( "SetNext\n" );
     }
     if ( current == myFirstElement ) myFirstElement = next;
 

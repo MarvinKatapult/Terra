@@ -1,12 +1,14 @@
 #include <stdio.h>
-#include <tlog.hpp>
+#include "tstring.hpp"
 
 int main() {
 
-    TLog log;
+    TString str( "Hello" );
+    TString str2( " World!" );
 
-    log.print( "Hello World%d\n", 5 );
+    str.append( str2 );
+
+    printf( "%s\n", str.ascii() );
 
     return 0;
 }
-
