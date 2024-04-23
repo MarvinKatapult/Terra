@@ -78,6 +78,10 @@ void TString::prepend( const TString & p_str ) {
     myBuffer = buffer;
 }
 
+void TString::replace( const TString & p_r_str, const TString & p_d_str ) {
+    // TODO
+}
+
 const char * TString::ascii() const {
     return (const char *)myBuffer;
 }

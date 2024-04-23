@@ -5,10 +5,6 @@ TList::TList() {
 	myLength = 0;
 }
 
-/**
- * @brief Copyconstructor
- * @param list
- */
 TList::TList( const TList & p_list ) {
     myLength = 0;
     

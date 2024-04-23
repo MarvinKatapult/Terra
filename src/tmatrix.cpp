@@ -1,5 +1,10 @@
 #include <tmatrix.hpp>
-#include <stdlib.h>
+
+TMatrix::TMatrix() {
+    myNumRows = 0;
+    myNumCols = 0;
+    myNumFields = 0;
+}
 
 TMatrix::TMatrix( float p_layout[], int p_rows, int p_cols ) {
 
@@ -16,7 +21,13 @@ TMatrix::TMatrix( float p_layout[], int p_rows, int p_cols ) {
     }
 }
 
-TMatrix::TMatrix() {}
+TMatrix::TMatrix( int p_rows, int p_cols ) {
+    myNumRows = p_rows;
+    myNumCols = p_cols;
+    myNumFields = myNumRows * myNumCols;
+
+    myFields = new float[myNumFields];
+}
 
 TMatrix::~TMatrix() {
     delete[] myFields;
@@ -50,7 +61,6 @@ TMatrix TMatrix::mult( TMatrix * p_matrix ) {
     return new_matrix;
 }
 
-// Getters
 float TMatrix::getValue( int p_position ) {
     return myFields[p_position];
 }

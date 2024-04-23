@@ -18,6 +18,7 @@ class TString {
         /** Modification **/
         void append( const TString & str );
         void prepend( const TString & str );
+        void replace( const TString & r_str, const TString & d_str );
 
         /** Utils **/
         const char * ascii( void ) const;

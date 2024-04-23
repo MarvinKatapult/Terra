@@ -4,29 +4,24 @@ class TListElement {
 
 	public:
 
-	   /**
-		* @brief Constructor
-		*/
+        /** Constructor **/
 		TListElement( void ) {
 			myNext = 0L;
 			myPrev = 0L;
 		}
 
-	   /**
-		* @brief Deconstructor
-		*/
+        /** Deconstructor **/
 		~TListElement( void ) {}
 
-		// Getter and Setter
-		void * getValue( void ) { return myValue; }
-
-		void setValue( void * value ) { myValue = value; }
-
-		TListElement * getNext( void ) { return myNext; }
-		TListElement * getPrev( void ) { return myPrev; }
-
+		/** Modification **/
 		void setNext( TListElement * element ) { myNext = element; }
 		void setPrev( TListElement * element ) { myPrev = element; }
+		void setValue( void * value ) { myValue = value; }
+
+        /** Utils **/
+		void * getValue( void ) { return myValue; }
+		TListElement * getNext( void ) { return myNext; }
+		TListElement * getPrev( void ) { return myPrev; }
 
 	private:
 
@@ -40,72 +35,27 @@ class TListElement {
 class TList {
 
 	public:
-	   /**
-		* @brief Constructor
-		*/
-		TList();
 
-        /**
-         * @brief Copyconstructor
-         * @param list
-         */
+        /** Constructors **/
+		TList();
         TList( const TList & list );
 
-	   /**
-		* @brief Deconstructor
-		*/
+        /** Deconstructor **/
 		~TList();
-	
-	   /**
-		* @brief Deletes every Element in List
-		*/
+
+        /** Modification **/
 		void clear( void );
-
-	   /**
-		* @brief Adds element to end of the list
-		* @param Element
-		*/
 		void append( void * element );
-
-	   /**
-		* @brief Returns value at position
-		* @param Position
-		* @return Value Returns value or null when out of bounds
-		*/
-		void * getValue( int position ) const;
-
-	   /**
-		* @brief Updates Value at Position
-		* @param Position position of element
-		* @param Value new value of element
-		*/
 		void update( int position, void * element );
-
-	   /**
-		* @brief Removes Element at Position
-		* @param Position position of element to be deleted
-		*/
 		void remove( int position );
 
-	   /**
-		* @brief Returns Length of List
-		* @return Number of Elements in List
-		*/
+        /** Utils **/
 		int count( void ) const { return myLength; }
+		void * getValue( int position ) const;
 	
 	private:
 
-	   /**
-		* @brief Returns Last Element in list
-		* @return Element Last Element
-		*/
 		TListElement * getLast( void );
-
-	   /**
-		* @brief Returns Element at Position
-		* @param Position position of element
-		* @return Element
-		*/
 		TListElement * getElement( int position );
 
 		TListElement * myFirstElement;

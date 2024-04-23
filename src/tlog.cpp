@@ -3,30 +3,17 @@
 #include <stdio.h>
 #include <stdarg.h>
 
-/**
- * @brief Constructor
- */
 TLog::TLog() {
     myLogLevel = TLogDebug;
     myLogColor = TLogDefault;
     myFile = stdout;
 }
 
-/**
- * @brief Constructor
- * @param log_level Loglevel
- */
 TLog::TLog( TLogLevel p_log_level, TLogColor p_log_color ) 
     : myLogLevel( p_log_level ), myLogColor( p_log_color ) { 
     myFile = stdout;
 }
 
-/**
- * @brief Constructor
- * @param file_path Filepath
- * @param clear_file If true, clears file before writing
- * @param log_color Logcolor
- */
 TLog::TLog( const char * p_file_path, bool p_clear_file, TLogColor p_log_color ) 
     : myLogColor( p_log_color ) {
     myLogLevel = TLogDebug; 
@@ -35,18 +22,10 @@ TLog::TLog( const char * p_file_path, bool p_clear_file, TLogColor p_log_color )
     myFile = fopen( p_file_path, mode );
 }
 
-/**
- * @brief Deconstructor
- */
 TLog::~TLog() {
     if ( !myFile ) fclose( myFile );
 }
 
-/**
- * @brief Prints to set file
- * @param format Format
- * @return true, if successful, otherwise false
- */
 bool TLog::print( const char * p_format, ... ) {
     setColorForLogLevel();
 
@@ -60,12 +39,6 @@ bool TLog::print( const char * p_format, ... ) {
     return ret;
 }
 
-/**
- * @brief Prints to set file with color
- * @param color Color
- * @param format Format
- * @return true, if successful, otherwise false
- */
 bool TLog::print( TLogColor p_color, const char * p_format, ... ) {
 
     // Print
@@ -79,12 +52,6 @@ bool TLog::print( TLogColor p_color, const char * p_format, ... ) {
     return ret;
 }
 
-/**
- * @brief Prints to set file with loglevel
- * @param level Loglevel
- * @param format Format
- * @return true, if successful, otherwise false
- */
 bool TLog::print( TLogLevel p_level, const char * p_format, ... ) {
 
     myLogLevel = p_level;
@@ -99,10 +66,6 @@ bool TLog::print( TLogLevel p_level, const char * p_format, ... ) {
     return ret;
 }
 
-/**
- * @brief Sets Color with ascii sequence
- * @param color Color
- */
 void TLog::setColor( TLogColor p_color ) {
     if ( myFile != stdout && myFile != stderr ) return;
     switch ( p_color ) {
@@ -136,17 +99,11 @@ void TLog::setColor( TLogColor p_color ) {
     }
 }
 
-/**
- * @brief Resets the color with ascii sequence
- */
 void TLog::resetColor() {
     if ( myFile != stdout && myFile != stderr ) return;
     fprintf( myFile, "\033[0m" );
 }
 
-/**
- * @brief Sets the color for set Loglevel
- */
 void TLog::setColorForLogLevel() {
     switch ( myLogLevel ) {
         case TLogDebug:

@@ -3,9 +3,10 @@
 
 int main() {
 
-    TString str( "Hello" );
+    TString str( "Das ist ein toller Satz. Das ist wudnerbar. Das das" );
 
-    printf( "%c\n", str.character( 1 ) );
+    str.replace( "Das", "TEST" );
+    printf( "String:>%s<\n", str.ascii() );
 
     return 0;
 }
