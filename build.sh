@@ -16,8 +16,37 @@ yellow_echo() {
     echo -e "\e[33m$text\e[0m"
 }
 
+if [ "$1" == "-so" ]; then
 ########## Compiling Static Library ##########
-if [ "$1" == "-lib" ]; then
+    echo -n "Generating shared object Library "
+    yellow_echo "$project.a"
+
+    # Check if debug directory exists
+    if [ ! -d "./debug" ]; then
+        mkdir debug
+    fi 
+#############################################
+
+######### Add Source Files #########
+    g++ -c src/tmatrix.cpp      -Iinclude -fPIC -o debug/tmatrix.o && \
+    g++ -c src/tlist.cpp        -Iinclude -fPIC -o debug/tlist.o && \
+    g++ -c src/tlog.cpp         -Iinclude -fPIC -o debug/tlog.o && \
+    g++ -c src/tstring.cpp      -Iinclude -fPIC -o debug/tstring.o && \
+    g++ -shared debug/* -fPIC -o lib${project}.so
+###################################
+    error_code=$?
+
+    echo -n "Compiling library "
+    if [ $error_code -eq 0 ]; then
+        echo -n "was "
+        green_echo "successfull"
+    else
+        red_echo "failed"
+    fi
+###################################
+
+########## Compiling Static Library ##########
+elif [ "$1" == "-lib" ]; then
     echo -n "Generating static Library "
     yellow_echo "$project.a"
 

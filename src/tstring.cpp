@@ -78,8 +78,44 @@ void TString::prepend( const TString & p_str ) {
     myBuffer = buffer;
 }
 
+void TString::remove( const TString & p_str, bool p_only_first ) {
+    char * pos;
+    int len = strlen( p_str.ascii() );
+    
+    while ( ( pos = strstr( buffer(), p_str.buffer() ) ) != 0L ) {
+        memmove( pos, pos + len, strlen( pos + len ) + 1 );
+        if ( p_only_first ) break;
+    }
+}
+
+void TString::insert( int p_position, const TString & p_str ) {
+    const int new_length = length() + p_str.length() + 1;
+    char * buffer = (char *)malloc( sizeof( char * ) * new_length );
+
+    for ( int i = 0; i < p_position; i++ ) {
+        buffer[i] = myBuffer[i];
+    }
+
+    int start = p_position;
+    for ( int i = start; i < p_str.length() + start; i++ ) {
+        buffer[i] = p_str[i - start];
+    }
+
+    start = p_position + p_str.length();
+    for ( int i = start; i < start + length() - p_position; i++ ) {
+        buffer[i] = myBuffer[i - p_str.length()];
+    }  
+    buffer[new_length] = '\0';
+
+    free( myBuffer );
+    myBuffer = buffer;
+}
+
 void TString::replace( const TString & p_r_str, const TString & p_d_str ) {
-    // TODO
+    for ( int i = find( p_r_str ); i != -1; i = find( p_r_str ) ) {
+        remove( p_r_str, true );
+        insert( i, p_d_str );
+    }
 }
 
 const char * TString::ascii() const {

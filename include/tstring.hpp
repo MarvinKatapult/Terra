@@ -18,6 +18,8 @@ class TString {
         /** Modification **/
         void append( const TString & str );
         void prepend( const TString & str );
+        void remove( const TString & str, bool only_first = false );
+        void insert( int position, const TString & str );
         void replace( const TString & r_str, const TString & d_str );
 
         /** Utils **/

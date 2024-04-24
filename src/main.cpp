@@ -3,10 +3,10 @@
 
 int main() {
 
-    TString str( "Das ist ein toller Satz. Das ist wudnerbar. Das das" );
-
-    str.replace( "Das", "TEST" );
-    printf( "String:>%s<\n", str.ascii() );
+    TString str( "Halo dies ist dies das dies" );
+    str.replace( "dies", "TESTAWDUWU" );
+    
+    printf( "%s\n", str.ascii() );
 
     return 0;
 }
