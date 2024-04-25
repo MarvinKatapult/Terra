@@ -6,3 +6,4 @@ Library for C++ with basic functionality
 - TList   - Linked List
 - TLog    - Log
 - TString - String
+- TFile   - File info and utility
