@@ -19,7 +19,7 @@ class TString {
         /** Modification **/
         void append( const TString & str );
         void prepend( const TString & str );
-        void remove( const TString & str, bool only_first = false );
+        TString remove( const TString & str, bool only_first = false );
         void insert( int position, const TString & str );
         void replace( const TString & r_str, const TString & d_str );
 
@@ -31,6 +31,7 @@ class TString {
         TString toUpper( void ) const;
         bool contains( const TString & str ) const;
         int find( const TString & str ) const; // -1 if not found
+        int findRev( const TString & str ) const; // -1 if not found
         char character( int position ) const;
         char * buffer( void ) const { return myBuffer; }
 

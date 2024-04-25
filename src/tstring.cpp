@@ -83,7 +83,7 @@ void TString::prepend( const TString & p_str ) {
     myBuffer = buffer;
 }
 
-void TString::remove( const TString & p_str, bool p_only_first ) {
+TString TString::remove( const TString & p_str, bool p_only_first ) {
     char * pos;
     int len = strlen( p_str.ascii() );
     
@@ -91,6 +91,8 @@ void TString::remove( const TString & p_str, bool p_only_first ) {
         memmove( pos, pos + len, strlen( pos + len ) + 1 );
         if ( p_only_first ) break;
     }
+
+    return *this;
 }
 
 void TString::insert( int p_position, const TString & p_str ) {
@@ -170,6 +172,20 @@ int TString::find( const TString & p_str ) const {
     if ( !found ) return -1;
 
     return found - myBuffer;
+}
+
+int TString::findRev( const TString & p_str ) const {
+    int pos = -1;
+    TString temp( myBuffer );
+    unsigned int length = 0;
+    char * found;
+    for ( found = strstr( temp.buffer(), p_str.ascii() ); strlen( found ) == length; found = strstr( myBuffer, p_str.ascii() ) ) {
+        length = strlen( found );
+    } 
+
+    pos = found - myBuffer;
+
+    return pos;
 }
 
 char TString::character( int p_position ) const {
