@@ -16,6 +16,11 @@ TString::TString( const char * p_str ) {
     copyCString( p_str );
 }
 
+TString::TString( const unsigned char * p_str ) {
+    initializeBuffer();
+    copyCString( (const char *)p_str );
+}
+
 TString::TString( char p_character ) {
     myBuffer = (char *)malloc( sizeof( char * ) * 2 );
     myBuffer[0] = p_character;
@@ -35,6 +40,10 @@ TString::TString( const TString & p_str ) {
     copyCString( p_str.ascii() );
 }
 
+TString::~TString() {
+    free( myBuffer );
+}
+
 void TString::initializeBuffer() {
     myBuffer = (char *)malloc( sizeof( char * ) );
     myBuffer[0] = '\0';
@@ -46,10 +55,6 @@ char * TString::convertNumberToString( long p_number ) {
     snprintf( buffer, 12, "%ld", p_number );
 
     return buffer;
-}
-
-TString::~TString() {
-    free( myBuffer );
 }
 
 void TString::append( const TString & p_str ) {
@@ -180,16 +185,30 @@ void TString::copyCString( const char * p_str ) {
     strcpy( myBuffer, p_str );
 }
 
-void TString::operator+=( const TString & str ) {
-    append( str );
+void TString::copyUnsignedCString( const unsigned char * p_str ) {
+    free( myBuffer );
+
+    myBuffer = (char *)malloc( sizeof( char * ) * strlen( (const char *)p_str ) + 1 );
+    if ( !myBuffer ) return;
+    memcpy( myBuffer, p_str, strlen( (const char *)p_str ) );
 }
 
-bool TString::operator==( const TString & str ) const {
-    return strcmp( ascii(), str.ascii() ) == 0;
+void TString::operator+=( const TString & p_str ) {
+    append( p_str );
 }
 
-void TString::operator=( const TString & str ) {
-    copyCString( str.ascii() );
+TString TString::operator+( const TString & p_str ) {
+    TString ret( myBuffer );
+    ret.append( p_str );
+    return ret;
+}
+
+bool TString::operator==( const TString & p_str ) const {
+    return strcmp( ascii(), p_str.ascii() ) == 0;
+}
+
+void TString::operator=( const TString & p_str ) {
+    copyCString( p_str.ascii() );
 }
 
 char TString::operator[]( int p_index ) const {

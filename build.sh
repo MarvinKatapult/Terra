@@ -19,7 +19,7 @@ yellow_echo() {
 if [ "$1" == "-so" ]; then
 ########## Compiling Static Library ##########
     echo -n "Generating shared object Library "
-    yellow_echo "$project.a"
+    yellow_echo "lib$project.so"
 
     # Check if debug directory exists
     if [ ! -d "./debug" ]; then
@@ -48,7 +48,7 @@ if [ "$1" == "-so" ]; then
 ########## Compiling Static Library ##########
 elif [ "$1" == "-lib" ]; then
     echo -n "Generating static Library "
-    yellow_echo "$project.a"
+    yellow_echo "lib$project.a"
 
     # Check if debug directory exists
     if [ ! -d "./debug" ]; then
@@ -78,12 +78,12 @@ else
     echo -n "Compiling all files for project "
     yellow_echo "$project"
 ######### Add Source Files #########
-    g++ -o $project -Wextra -Wall -pedantic -g -Iinclude \
+    g++ -o $project -Wextra -Wall -pedantic -g -Iinclude -lcrypto \
         src/main.cpp \
         src/tmatrix.cpp \
         src/tlog.cpp \
         src/tlist.cpp \
-        src/tstring.cpp
+        src/tstring.cpp \
 ###################################
     error_code=$?
     echo -n "Compiling "

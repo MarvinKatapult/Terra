@@ -7,6 +7,7 @@ class TString {
         /** Constructors **/
         TString( void );
         TString( const char * str );
+        TString( const unsigned char * str );
         TString( char character );
         TString( int number );
         TString( long number );
@@ -35,6 +36,7 @@ class TString {
 
         /** Operator **/
         void operator+=( const TString & str );
+        TString operator+( const TString & str );
         void operator=( const TString & str );
         bool operator==( const TString & str ) const;
         char operator[]( int index ) const;
@@ -42,6 +44,7 @@ class TString {
     private:
 
         void copyCString( const char * c_string );
+        void copyUnsignedCString( const unsigned char * c_string );
         void initializeBuffer( void );
         char * convertNumberToString( long number );
 
