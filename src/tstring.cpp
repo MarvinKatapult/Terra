@@ -44,6 +44,12 @@ TString::~TString() {
     free( myBuffer );
 }
 
+void TString::clear() {
+    free( myBuffer );
+    myBuffer = (char *)malloc( sizeof( char * ) );
+    *myBuffer = '\0';
+}
+
 void TString::initializeBuffer() {
     myBuffer = (char *)malloc( sizeof( char * ) );
     myBuffer[0] = '\0';
@@ -174,18 +180,16 @@ int TString::find( const TString & p_str ) const {
     return found - myBuffer;
 }
 
-int TString::findRev( const TString & p_str ) const {
-    int pos = -1;
-    TString temp( myBuffer );
-    unsigned int length = 0;
-    char * found;
-    for ( found = strstr( temp.buffer(), p_str.ascii() ); strlen( found ) == length; found = strstr( myBuffer, p_str.ascii() ) ) {
-        length = strlen( found );
-    } 
+int TString::find( int p_position, const TString & p_str ) const {
+    if ( p_position > length() ) return -1;
+    if ( p_position < 0 ) p_position = 0;
 
-    pos = found - myBuffer;
+    char * buffer = myBuffer + p_position;
 
-    return pos;
+    char * found = strstr( buffer, p_str.ascii() );
+    if ( !found ) return -1;
+
+    return found - myBuffer;
 }
 
 char TString::character( int p_position ) const {

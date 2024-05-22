@@ -19,7 +19,6 @@ class TFile {
         /** Utils **/
         TString readLine( int line_number );
         int lineCount( void ) { return myLineCount; }
-        TString basename( void );
         TString path( void );
 
         static int calcLineCount( FILE * file );

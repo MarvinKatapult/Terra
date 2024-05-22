@@ -22,6 +22,7 @@ class TString {
         TString remove( const TString & str, bool only_first = false );
         void insert( int position, const TString & str );
         void replace( const TString & r_str, const TString & d_str );
+        void clear( void );
 
         /** Utils **/
         const char * ascii( void ) const;
@@ -31,7 +32,7 @@ class TString {
         TString toUpper( void ) const;
         bool contains( const TString & str ) const;
         int find( const TString & str ) const; // -1 if not found
-        int findRev( const TString & str ) const; // -1 if not found
+        int find( int position, const TString & str ) const; // -1 if not found
         char character( int position ) const;
         char * buffer( void ) const { return myBuffer; }
 

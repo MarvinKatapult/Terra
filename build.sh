@@ -33,6 +33,7 @@ if [ "$1" == "-so" ]; then
     g++ -c src/tlog.cpp         -Iinclude -fPIC -o debug/tlog.o && \
     g++ -c src/tstring.cpp      -Iinclude -fPIC -o debug/tstring.o && \
     g++ -c src/tfile.cpp        -Iinclude -fPIC -o debug/tfile.o && \
+    g++ -c src/tvector.cpp      -Iinclude -fPIC -o debug/tvector.o && \
     g++ -shared debug/* -fPIC -o lib${project}.so
 ###################################
     error_code=$?
@@ -63,6 +64,7 @@ elif [ "$1" == "-lib" ]; then
     g++ -c src/tlog.cpp         -Iinclude  -fPIC    -o debug/tlog.o && \
     g++ -c src/tstring.cpp      -Iinclude  -fPIC    -o debug/tstring.o && \
     g++ -c src/tfile.cpp        -Iinclude  -fPIC    -o debug/tfile.o && \
+    g++ -c src/tvector.cpp      -Iinclude   -fPIC   -o debug/tvector.o && \
     ar rcs lib$project.a debug/*
 ###################################
     error_code=$?
@@ -87,6 +89,7 @@ else
         src/tlist.cpp \
         src/tstring.cpp \
         src/tfile.cpp \
+        src/tvector.cpp \
 ###################################
     error_code=$?
     echo -n "Compiling "

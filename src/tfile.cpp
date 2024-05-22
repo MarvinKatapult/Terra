@@ -27,10 +27,6 @@ TString TFile::readLine( int p_line_number ) {
     return TString( buffer ).remove( "\n" );
 }
 
-TString TFile::basename() {
-    return "";
-}
-
 TString TFile::path() {
     char absolute_path[PATH_MAX];
     return realpath( myFilepath->ascii(), absolute_path );
