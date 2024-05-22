@@ -7,3 +7,4 @@ Library for C++ with basic functionality
 - TLog    - Log
 - TString - String
 - TFile   - File info and utility
+- Vector3 - Vectorclass
