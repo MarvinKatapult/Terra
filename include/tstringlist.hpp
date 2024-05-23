@@ -13,12 +13,12 @@ class TStringList : public TList {
         ~TStringList( void );
 
         /** Modification **/
-		void append( const TString & str );
-		void update( int position, const TString & str );
-		void remove( int position );
+        void append( const TString & str );
+        void update( int position, const TString & str );
+        void remove( int position );
 
         /** Utils **/
-		TString getValue( int position ) const;
+        TString getValue( int position ) const;
 
         /** Operator **/
         void operator+=( const TString & str );
