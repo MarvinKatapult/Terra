@@ -17,12 +17,12 @@ class TString {
         ~TString( void );
 
         /** Modification **/
-        void append( const TString & str );
-        void prepend( const TString & str );
-        TString remove( const TString & str, bool only_first = false );
-        void insert( int position, const TString & str );
-        void replace( const TString & r_str, const TString & d_str );
-        void clear( void );
+        TString & append( const TString & str );
+        TString & prepend( const TString & str );
+        TString & remove( const TString & str, bool only_first = false );
+        TString & insert( int position, const TString & str );
+        TString & replace( const TString & r_str, const TString & d_str );
+        TString & clear( void );
 
         /** Utils **/
         const char * ascii( void ) const;

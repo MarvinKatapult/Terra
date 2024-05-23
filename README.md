@@ -8,9 +8,10 @@ Under Linux you can just start the build.sh script
 - ./build.sh -lib -> Static Library
 
 # Classes
-- TMatrix - Mathematic Matrix
-- TList   - Linked List
-- TLog    - Log
-- TString - String
-- TFile   - File info and utility
-- Vector3 - Vectorclass
+- TMatrix       - Mathematic Matrix
+- TList         - Linked List
+- TLog          - Log
+- TString       - String
+- TStringList   - StringList
+- TFile         - File info and utility
+- Vector3       - Vectorclass

@@ -34,7 +34,8 @@ if [ "$1" == "-so" ]; then
     g++ -c src/tstring.cpp      -Iinclude -fPIC -o debug/tstring.o && \
     g++ -c src/tfile.cpp        -Iinclude -fPIC -o debug/tfile.o && \
     g++ -c src/tvector.cpp      -Iinclude -fPIC -o debug/tvector.o && \
-    g++ -shared debug/* -fPIC -o lib${project}.so
+    g++ -c src/tstringlist.cpp  -Iinclude -fPIC -o debug/tstringlist.o && \
+    g++ -shared debug/* -fPIC -o lib${project}.so 
 ###################################
     error_code=$?
 
@@ -64,7 +65,8 @@ elif [ "$1" == "-lib" ]; then
     g++ -c src/tlog.cpp         -Iinclude  -fPIC    -o debug/tlog.o && \
     g++ -c src/tstring.cpp      -Iinclude  -fPIC    -o debug/tstring.o && \
     g++ -c src/tfile.cpp        -Iinclude  -fPIC    -o debug/tfile.o && \
-    g++ -c src/tvector.cpp      -Iinclude   -fPIC   -o debug/tvector.o && \
+    g++ -c src/tvector.cpp      -Iinclude  -fPIC    -o debug/tvector.o && \
+    g++ -c src/tstringlist.cpp  -Iinclude  -fPIC    -o debug/tstringlist.o && \
     ar rcs lib$project.a debug/*
 ###################################
     error_code=$?
@@ -82,7 +84,7 @@ else
     echo -n "Compiling all files for project "
     yellow_echo "$project"
 ######### Add Source Files #########
-    g++ -o $project -Wextra -Wall -pedantic -g -Iinclude -lcrypto \
+    g++ -o $project -Wextra -Wall -pedantic -g -Iinclude \
         src/main.cpp \
         src/tmatrix.cpp \
         src/tlog.cpp \
@@ -90,6 +92,7 @@ else
         src/tstring.cpp \
         src/tfile.cpp \
         src/tvector.cpp \
+        src/tstringlist.cpp \
 ###################################
     error_code=$?
     echo -n "Compiling "

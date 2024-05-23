@@ -1,5 +1,7 @@
 #pragma once
 
+#include "tstring.hpp"
+
 class TString;
 typedef struct _IO_FILE FILE;
 

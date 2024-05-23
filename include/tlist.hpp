@@ -37,11 +37,11 @@ class TList {
 	public:
 
         /** Constructors **/
-		TList();
+		TList( void );
         TList( const TList & list );
 
         /** Deconstructor **/
-		~TList();
+		~TList( void );
 
         /** Modification **/
 		void clear( void );

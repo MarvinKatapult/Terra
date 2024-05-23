@@ -2,9 +2,8 @@
 
 #include <stdio.h>
 #include <stdlib.h>
-#include <limits.h>
 
-#include "tstring.hpp"
+#include <limits.h>
 
 TFile::TFile( const TString & p_filename, FileMode p_mode ) {
     myFile = fopen( p_filename.ascii(), p_mode == Read ? "r" : "a" );

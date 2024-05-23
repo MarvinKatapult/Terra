@@ -44,10 +44,12 @@ TString::~TString() {
     free( myBuffer );
 }
 
-void TString::clear() {
+TString & TString::clear() {
     free( myBuffer );
     myBuffer = (char *)malloc( sizeof( char * ) );
     *myBuffer = '\0';
+
+    return  *this;
 }
 
 void TString::initializeBuffer() {
@@ -63,7 +65,7 @@ char * TString::convertNumberToString( long p_number ) {
     return buffer;
 }
 
-void TString::append( const TString & p_str ) {
+TString & TString::append( const TString & p_str ) {
     const int start_length = strlen( myBuffer );
     const int end_length = p_str.length() + start_length;
 
@@ -74,9 +76,11 @@ void TString::append( const TString & p_str ) {
 
     free( myBuffer );
     myBuffer = buffer;
+
+    return *this;
 }
 
-void TString::prepend( const TString & p_str ) {
+TString & TString::prepend( const TString & p_str ) {
     const int start_length = strlen( myBuffer );
     const int end_length = p_str.length() + start_length;
 
@@ -87,9 +91,11 @@ void TString::prepend( const TString & p_str ) {
 
     free( myBuffer );
     myBuffer = buffer;
+
+    return *this;
 }
 
-TString TString::remove( const TString & p_str, bool p_only_first ) {
+TString & TString::remove( const TString & p_str, bool p_only_first ) {
     char * pos;
     int len = strlen( p_str.ascii() );
     
@@ -101,7 +107,7 @@ TString TString::remove( const TString & p_str, bool p_only_first ) {
     return *this;
 }
 
-void TString::insert( int p_position, const TString & p_str ) {
+TString & TString::insert( int p_position, const TString & p_str ) {
     const int new_length = length() + p_str.length() + 1;
     char * buffer = (char *)malloc( sizeof( char * ) * new_length );
 
@@ -122,13 +128,17 @@ void TString::insert( int p_position, const TString & p_str ) {
 
     free( myBuffer );
     myBuffer = buffer;
+
+    return *this;
 }
 
-void TString::replace( const TString & p_r_str, const TString & p_d_str ) {
+TString & TString::replace( const TString & p_r_str, const TString & p_d_str ) {
     for ( int i = find( p_r_str ); i != -1; i = find( p_r_str ) ) {
         remove( p_r_str, true );
         insert( i, p_d_str );
     }
+
+    return *this;
 }
 
 const char * TString::ascii() const {
