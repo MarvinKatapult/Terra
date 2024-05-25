@@ -14,6 +14,12 @@ TLog::TLog( TLogLevel p_log_level, TLogColor p_log_color )
     myFile = stdout;
 }
 
+TLog::TLog( TLogColor p_log_color ) {
+    myLogLevel = TLogDebug;
+    myLogColor = p_log_color;
+    myFile = stdout;
+}
+
 TLog::TLog( const char * p_file_path, bool p_clear_file, TLogColor p_log_color ) 
     : myLogColor( p_log_color ) {
     myLogLevel = TLogDebug; 
@@ -27,9 +33,8 @@ TLog::~TLog() {
 }
 
 bool TLog::print( const char * p_format, ... ) {
-    setColorForLogLevel();
 
-    // Print
+    setColor( myLogColor );
     va_list args;
     va_start( args, p_format );
     bool ret = vfprintf( myFile, p_format, args ) >= 0;
@@ -41,7 +46,6 @@ bool TLog::print( const char * p_format, ... ) {
 
 bool TLog::print( TLogColor p_color, const char * p_format, ... ) {
 
-    // Print
     setColor( p_color );
     va_list args;
     va_start( args, p_format );
@@ -56,7 +60,7 @@ bool TLog::print( TLogLevel p_level, const char * p_format, ... ) {
 
     myLogLevel = p_level;
     setColorForLogLevel();
-    // Print
+
     va_list args;
     va_start( args, p_format );
     bool ret = vfprintf( myFile, p_format, args ) >= 0;

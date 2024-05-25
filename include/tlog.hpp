@@ -27,6 +27,7 @@ class TLog {
         /** Constructors **/
         TLog( void );
         TLog( TLogLevel log_level, TLogColor log_color = TLogDefault );
+        TLog( TLogColor log_color );
         TLog( const char * file_path, bool clear_file = true, TLogColor color = TLogDefault );
 
         /** Deconstructor **/
