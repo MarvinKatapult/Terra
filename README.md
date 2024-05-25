@@ -15,3 +15,4 @@ Under Linux you can just start the build.sh script
 - TStringList   - StringList
 - TFile         - File info and utility
 - Vector3       - Vectorclass
+- THash         - Hashclass
