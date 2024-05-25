@@ -37,14 +37,15 @@ class TLog {
         bool print( const char * format, ... ); 
         bool print( TLogColor color, const char * format, ... );
         bool print( TLogLevel level, const char * format, ... );
+        static void setColor( TLogColor color, bool is_stderr = false );
+        static void resetColor( bool is_stderr = false );
 
         static bool log( const char * format, ... );
+        static bool log( TLogColor color, const char * format, ... );
         
     private:
 
-        void resetColor( void );
         void setColorForLogLevel( void );
-        void setColor( TLogColor color );
 
         FILE * myFile;
         TLogLevel myLogLevel;
