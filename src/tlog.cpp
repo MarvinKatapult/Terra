@@ -70,6 +70,16 @@ bool TLog::print( TLogLevel p_level, const char * p_format, ... ) {
     return ret;
 }
 
+bool TLog::log( const char * p_format, ... ) {
+
+    va_list args;
+    va_start( args, p_format );
+    bool ret = vfprintf( stdout, p_format, args ) >= 0;
+    va_end( args );
+
+    return ret;
+}
+
 void TLog::setColor( TLogColor p_color ) {
     if ( myFile != stdout && myFile != stderr ) return;
     switch ( p_color ) {

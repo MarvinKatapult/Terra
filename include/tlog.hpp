@@ -38,6 +38,8 @@ class TLog {
         bool print( TLogColor color, const char * format, ... );
         bool print( TLogLevel level, const char * format, ... );
 
+        static bool log( const char * format, ... );
+        
     private:
 
         void resetColor( void );
