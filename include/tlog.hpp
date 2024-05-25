@@ -7,28 +7,28 @@ class TLog {
     public:
 
         enum TLogLevel {
-            TLogDebug,
-            TLogWarning,
-            TLogError
+            Debug,
+            Warning,
+            Error
         };
 
         enum TLogColor {
-            TLogBlack,
-            TLogRed,
-            TLogGreen,
-            TLogYellow,
-            TLogBlue,
-            TLogPurple,
-            TLogCyan,
-            TLogWhite,
-            TLogDefault
+            Black,
+            Red,
+            Green,
+            Yellow,
+            Blue,
+            Purple,
+            Cyan,
+            White,
+            Default
         };
 
         /** Constructors **/
         TLog( void );
-        TLog( TLogLevel log_level, TLogColor log_color = TLogDefault );
+        TLog( TLogLevel log_level, TLogColor log_color = Default );
         TLog( TLogColor log_color );
-        TLog( const char * file_path, bool clear_file = true, TLogColor color = TLogDefault );
+        TLog( const char * file_path, bool clear_file = true, TLogColor color = Default );
 
         /** Deconstructor **/
         ~TLog( void );
