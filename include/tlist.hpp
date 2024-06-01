@@ -46,6 +46,7 @@ class TList {
         /** Modification **/
 		void clear( void );
 		void append( void * element );
+        void prepend( void * element );
 		void update( int position, void * element );
 		void remove( int position );
 
@@ -62,5 +63,6 @@ class TList {
 		TListElement * getElement( int position );
 
 		TListElement * myFirstElement;
+        TListElement * myLastElement;
 		int myLength;
 };

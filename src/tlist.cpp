@@ -4,11 +4,13 @@
 TList::TList() {
 	myLength = 0;
     myFirstElement = 0L;
+    myLastElement = 0L;
 }
 
 TList::TList( const TList & p_list ) {
     myLength = 0;
     myFirstElement = 0L;
+    myLastElement = 0L;
     
     for ( int i = 0; i < p_list.count(); i++ ) {
         append( p_list.getValue( i ) );
@@ -22,6 +24,7 @@ TList::~TList() {
 void TList::clear() {
 	TListElement * current = myFirstElement;
 	myFirstElement = 0L;
+    myLastElement = 0L;
 
 	// Go through Elements and delete
 	while ( current != 0L ) {
@@ -39,13 +42,38 @@ void TList::append( void * p_element ) {
 
 	// If element is not first element
 	if ( myLength != 0 ) {
-		TListElement * last_element = getLast();
+		TListElement * last_element = myLastElement;
 		// Chain Elements
 		last_element->setNext( new_element );
 		new_element->setPrev( last_element );
+        myLastElement = new_element;
 
 	// If Element is first Element
-	} else myFirstElement = new_element;
+	} else {
+        myFirstElement = new_element;
+        myLastElement = new_element;
+    }
+	myLength++;
+}
+
+void TList::prepend( void * p_element ) {
+	// Create new Element
+	TListElement * new_element = new TListElement();
+	new_element->setValue( p_element );	
+    
+	// If element is not first element
+	if ( myLength != 0 ) {
+		TListElement * first_element = myFirstElement;
+		// Chain Elements
+		new_element->setNext( first_element );
+		new_element->setPrev( 0L );
+        myFirstElement = new_element;
+
+	// If Element is first Element
+	} else {
+        myFirstElement = new_element;
+        myLastElement = new_element;
+    }
 	myLength++;
 }
 
@@ -77,7 +105,9 @@ void TList::remove( int p_position ) {
     if ( prev != 0L ) {
         prev->setNext( next );
     }
+
     if ( current == myFirstElement ) myFirstElement = next;
+    if ( current == myLastElement ) myLastElement = prev;
 
 	myLength--;
 	delete( current );
@@ -95,6 +125,7 @@ TListElement * TList::getLast() {
 
 TListElement * TList::getElement( int p_position ) {
     if ( p_position == 0 ) return myFirstElement;
+    if ( p_position == myLength - 1 ) return myLastElement;
 
 	TListElement * current = myFirstElement;
 	while ( p_position != 0 ) {

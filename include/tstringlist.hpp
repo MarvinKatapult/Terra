@@ -3,7 +3,7 @@
 #include "tlist.hpp"
 #include "tstring.hpp"
 
-#define PRINT_TSTRINGLIST( STR )    for ( int i = 0; i < STR.count(); i++ ) printf( "%s\n", STR[i].ascii() )
+#define PRINT_TSTRINGLIST( STR )    printf( "%s\n", STR.join( "," ).ascii() )
 
 class TStringList : public TList {
   
@@ -19,6 +19,7 @@ class TStringList : public TList {
 
         /** Utils **/
         TString getValue( int position ) const;
+        TString join( const TString & seperator ) const;
 
         /** Operator **/
         void operator+=( const TString & str );

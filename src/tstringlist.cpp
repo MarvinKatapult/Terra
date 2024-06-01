@@ -36,3 +36,15 @@ void TStringList::operator+=( const TString & p_str ) {
 TString TStringList::operator[]( int p_index ) {
     return getValue( p_index );
 }
+
+TString TStringList::join( const TString & p_sep ) const {
+    TString ret;
+    TString sep = " ";
+    sep += p_sep;
+    sep += " ";
+
+    for ( int i = 0; i < count(); i++ ) {
+        ret += sep + getValue( i );
+    }
+    return ret;
+}
