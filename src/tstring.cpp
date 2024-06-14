@@ -188,6 +188,17 @@ TString TString::between( int p_pos1, int p_pos2 ) const {
     return str;
 }
 
+TString TString::right( const TString & p_str ) const {
+    const int find = this->find( p_str );
+    if ( find < 0 ) return "";
+
+    TString ret;
+    for ( int i = find + p_str.length(); i < this->length(); i++ ) {
+        ret += this->character( i );
+    }
+    return ret;
+}
+
 bool TString::contains( const TString & p_str ) const {
     return strstr( myBuffer, p_str.ascii() ) != NULL;
 }
