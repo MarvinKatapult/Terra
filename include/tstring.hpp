@@ -30,6 +30,7 @@ class TString {
         int length( void ) const;
         TString toLower( void ) const;
         TString toUpper( void ) const;
+        TString between( int pos1, int pos2 ) const;
         bool contains( const TString & str ) const;
         int find( const TString & str ) const; // -1 if not found
         int find( int position, const TString & str ) const; // -1 if not found

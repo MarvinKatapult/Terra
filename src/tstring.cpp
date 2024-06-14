@@ -179,6 +179,15 @@ TString TString::toUpper() const {
     return TString( buffer );
 }
 
+TString TString::between( int p_pos1, int p_pos2 ) const {
+    if ( p_pos2 > this->length() || p_pos1 > p_pos2 ) return "";
+    TString str;
+    for ( int i = p_pos1; i < p_pos2; i++ ) {
+        str += this->character( i );
+    }
+    return str;
+}
+
 bool TString::contains( const TString & p_str ) const {
     return strstr( myBuffer, p_str.ascii() ) != NULL;
 }
