@@ -16,6 +16,7 @@ void TStringList::append( const TString & p_str ) {
 
 void TStringList::update( int p_position, const TString & p_str ) {
     TString * new_str = new TString( p_str );
+    delete( (TString *)TList::getValue( p_position ) );
     TList::update( p_position, (void *)new_str );
 }
 
