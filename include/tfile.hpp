@@ -15,15 +15,15 @@ class TFile {
         };
 
         /** Constructor **/
-        TFile( const TString & filename, FileMode mode = Read );
-        ~TFile( void );
+        TFile(const TString & filename, FileMode mode = Read);
+        ~TFile(void);
 
         /** Utils **/
-        TString readLine( int line_number );
-        int lineCount( void ) { return myLineCount; }
-        TString path( void );
+        TString readLine(int line_number);
+        int lineCount(void) { return myLineCount; }
+        TString path(void);
 
-        static int calcLineCount( FILE * file );
+        static int calcLineCount(FILE * file);
 
     private:
 

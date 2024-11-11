@@ -5,23 +5,23 @@ class TListElement {
 	public:
 
         /** Constructor **/
-		TListElement( void ) {
+		TListElement(void) {
 			myNext = 0L;
 			myPrev = 0L;
 		}
 
         /** Deconstructor **/
-		~TListElement( void ) {}
+		~TListElement(void) {}
 
 		/** Modification **/
-		void setNext( TListElement * element ) { myNext = element; }
-		void setPrev( TListElement * element ) { myPrev = element; }
-		void setValue( void * value ) { myValue = value; }
+		void setNext(TListElement * element) { myNext = element; }
+		void setPrev(TListElement * element) { myPrev = element; }
+		void setValue(void * value) { myValue = value; }
 
         /** Utils **/
-		void * getValue( void ) { return myValue; }
-		TListElement * getNext( void ) { return myNext; }
-		TListElement * getPrev( void ) { return myPrev; }
+		void * getValue(void) { return myValue; }
+		TListElement * getNext(void) { return myNext; }
+		TListElement * getPrev(void) { return myPrev; }
 
 	private:
 
@@ -37,29 +37,29 @@ class TList {
 	public:
 
         /** Constructors **/
-		TList( void );
-        TList( const TList & list );
+		TList(void);
+        TList(const TList & list);
 
         /** Deconstructor **/
-		~TList( void );
+		~TList(void);
 
         /** Modification **/
-		void clear( void );
-		void append( void * element );
-		void update( int position, void * element );
-		void remove( int position );
+		void clear(void);
+		void append(void * element);
+		void update(int position, void * element);
+		void remove(int position);
 
         /** Utils **/
-		int count( void ) const { return myLength; }
-		void * getValue( int position ) const;
+		int count(void) const { return myLength; }
+		void * getValue(int position) const;
 
         /** Operators **/
-        TList & operator=( const TList & other );
+        TList & operator=(const TList & other);
 	
 	private:
 
-		TListElement * getLast( void );
-		TListElement * getElement( int position );
+		TListElement * getLast(void);
+		TListElement * getElement(int position);
 
 		TListElement * myFirstElement;
 		int myLength;
