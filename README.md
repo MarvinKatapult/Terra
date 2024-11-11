@@ -4,8 +4,8 @@ Library for C++ with basic functionality
 # How to build
 ## Linux
 Under Linux you can just start the build.sh script
-- ./build.sh -so -> Dynamic Library
-- ./build.sh -lib -> Static Library
+- make -> For the static library .a
+- make test -> To test functionality with the src/main.cpp
 
 # Classes
 - TMatrix       - Mathematic Matrix
