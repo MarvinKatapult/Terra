@@ -29,7 +29,7 @@ TLog::TLog(const char * p_file_path, bool p_clear_file, TLogColor p_log_color)
 }
 
 TLog::~TLog() {
-    if (!myFile) fclose(myFile);
+    if (myFile) fclose(myFile);
 }
 
 bool TLog::print(const char * p_format, ...) {
