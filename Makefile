@@ -37,3 +37,4 @@ test: lib
 clean:
 	rm *.o -f
 	rm test -f
+	rm libterra.a -f
