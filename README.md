@@ -1,4 +1,4 @@
-# MLib
+# Terra
 Library for C++ with basic functionality
 
 # How to build
